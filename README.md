@@ -81,7 +81,6 @@ These instructions will get you a copy of the project up and running in your loc
 * Output :  {"productId": "M20324",    "userId": "Manish",    "rating": 6.5}
 * http://localhost:8081/review/{userId}/{productId}	(method=DELETE)
 * http://localhost:8081/review/admin/health		(method=GET)
-* http://localhost:8081/review/admin/info		(method=GET)
 
 * Swagger UI
 * http://localhost:8081/swagger-ui.html
@@ -90,7 +89,6 @@ These instructions will get you a copy of the project up and running in your loc
 
 * http://localhost:8080/product/{productId}	(method=GET)
 * http://localhost:8081/review/health		(method=GET)
-* http://localhost:8081/review/admin/info	(method=GET)
 
 * Swagger UI
 * http://localhost:8080/swagger-ui.html

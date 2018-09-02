@@ -20,6 +20,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	public ResponseEntity<ApiError> notFoundException(com.adidas.exception.NotFoundException e) throws Exception {
 		ApiError error = new ApiError();
 		error.setMessage(e.getMessage());
+		error.setStatus(HttpStatus.NOT_FOUND);
 		logger.error(e.getMessage());
 		e.printStackTrace();
 		return new ResponseEntity<ApiError>(error, HttpStatus.NOT_FOUND);
@@ -30,6 +31,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 			throws Exception {
 		ApiError error = new ApiError();
 		error.setMessage(e.message);
+		error.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
 		logger.error(e.getMessage());
 		e.printStackTrace();
 		return new ResponseEntity<ApiError>(error, HttpStatus.INTERNAL_SERVER_ERROR);
