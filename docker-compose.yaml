@@ -1,0 +1,16 @@
+version: '3'
+services:
+  adidasproductreview:
+    build:
+      context: ./
+      dockerfile: Dockerfile-adidas-product-review
+    hostname: product-review
+    ports:
+      - 8081:8081
+  adidasproductinfo:
+    build:
+      context: ./
+      dockerfile: Dockerfile-adidas-product-info 
+    hostname: product-info
+    ports:
+      - 8080:8080

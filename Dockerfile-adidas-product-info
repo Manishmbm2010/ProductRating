@@ -1,0 +1,3 @@
+FROM openjdk:8-jdk-alpine
+COPY AdidasProductInfo/target/adidas-product-info-1.0.jar adidas-product-info.jar
+ENTRYPOINT java -jar adidas-product-info.jar

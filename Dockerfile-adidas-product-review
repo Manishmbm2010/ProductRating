@@ -1,0 +1,3 @@
+FROM openjdk:8-jdk-alpine
+COPY AdidasProductReview/target/adidas-product-review-1.0.jar adidas-product-review.jar
+ENTRYPOINT java -jar adidas-product-review.jar
