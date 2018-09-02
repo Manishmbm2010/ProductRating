@@ -27,6 +27,10 @@ Overall Solution contains 2 microservices(Product Info and Product Review), runn
 
 * Proper timeouts has been configured for /product/{productId} endpoint , In case of review service is down or not responsing in 2 seconds , only product info excluding reviews will be returned in response. This makes product service higly available and lossely coupled with review service.
 * To minimize the number of database calls and make reveiw service more efficient, caching has been implemneted for many database calls.
+
+* Put the logs of product review service in TRACE mode and run the below command to see cache uses
+* tail -f spring.log | egrep -i "cache entry|invalidating"
+
 * For big installation separate redis server for cache can be deployed. Other caching solution can also be configured for highly sccalable and available solutions.
 * Centralized Exception handling is implemented and all the execptions would be redirected to global exception handler and from there final response would be sent to rest client with proper exception message.
 * All updates are protected by spring Security (Basic Authentication  username = manish , pasword=manish1$3) 
@@ -39,7 +43,7 @@ These instructions will get you a copy of the project up and running in your loc
 ### Prerequisites
 
 * If you want to follow docker deployment instructions Docker machine should be up and running and docker-compose should be installed for containerized deployment
-* For normal instruction, maven and java should be installed.
+* For normal instruction maven and java should be installed.
 
 
 
@@ -47,8 +51,8 @@ These instructions will get you a copy of the project up and running in your loc
 
 ## Docker Deployment
 
-1. git clone https://Manishmbm2010@bitbucket.org/Manishmbm2010/productreviewservice.git
-2. cd productreviewservice/AdidasProductReview
+1. git clone https://Manishmbm2010@bitbucket.org/Manishmbm2010/adidasproductreview.git
+2. cd adidasproductreview/AdidasProductReview
 3. docker run -it --rm -v "$PWD":/usr/src/app/ --volume "$HOME"/.m2:/root/.m2 -w /usr/src/app/ maven:3-jdk-8-alpine mvn clean install
 4. cd ../AdidasProductInfo/
 5. sed -i -e "s/localhost/adidasproductreview/g" src/main/resources/application.properties
@@ -57,8 +61,8 @@ These instructions will get you a copy of the project up and running in your loc
 
 ## Deployment instruction for Linux Machine
 
-1. git clone https://Manishmbm2010@bitbucket.org/Manishmbm2010/productreviewservice.git
-2. cd productreviewservice/AdidasProductReview/
+1. git clone https://Manishmbm2010@bitbucket.org/Manishmbm2010/adidasproductreview.git
+2. cd adidasproductreview/AdidasProductReview/
 3. mvn clean install
 4. java -jar ./target/adidas-product-review-1.0.jar
 5. cd ../AdidasProductInfo
@@ -78,7 +82,6 @@ These instructions will get you a copy of the project up and running in your loc
 * http://localhost:8081/review/{userId}/{productId}	(method=DELETE)
 * http://localhost:8081/review/admin/health		(method=GET)
 * http://localhost:8081/review/admin/info		(method=GET)
-* http://localhost:8081/review/admin/shutdown 		(method=POST)
 
 * Swagger UI
 * http://localhost:8081/swagger-ui.html
@@ -88,7 +91,6 @@ These instructions will get you a copy of the project up and running in your loc
 * http://localhost:8080/product/{productId}	(method=GET)
 * http://localhost:8081/review/health		(method=GET)
 * http://localhost:8081/review/admin/info	(method=GET)
-* http://localhost:8081/review/admin/shutdown 	(method=POST)  -- Should be sensitive
 
 * Swagger UI
 * http://localhost:8080/swagger-ui.html
